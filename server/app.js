@@ -12,9 +12,20 @@ app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
   // check url parameters using req.query
-  axios
-    .get("http://omdbapi.com/?i=" + "tt3896198" + `&apikey=${API_KEY}`)
-    .then(response => console.log(response));
+  // let search = req.query;
+  // console.log(search);
+
+  if (req.query.i) {
+    axios
+      .get("https://omdbapi.com/?i=" + `${req.query.i}` + `&apikey=${API_KEY}`)
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
+  } else if (req.query.t) {
+    axios
+      .get("https://omdbapi.com/?t=" + `${req.query.t}` + `&apikey=${API_KEY}`)
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
+  }
 });
 
 module.exports = app;
