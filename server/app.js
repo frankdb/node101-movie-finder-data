@@ -2,7 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const axios = require("axios");
 
-const API_KEY = "63eedeac";
+const API_KEY = "8730e0e";
 
 const app = express();
 
@@ -24,14 +24,14 @@ app.get("/", (req, res) => {
   console.log("Cache:", cache);
   if (!!req.query.i) {
     if (!!cache[req.query.i]) {
-      console.log("Location A - cache");
+      console.log("Cache hit - id");
       res.status(200).json(cache[req.query.i]);
       console.log("res.body:", res.body);
       console.log("res", res);
     } else {
-      console.log("Location B - axios");
+      console.log("Cache miss, call axios - id");
       axios
-        .get("https://omdbapi.com/?i=" + req.query.i + "&apikey=63eedeac")
+        .get("http://www.omdbapi.com/?i=" + req.query.i + "&apikey=8730e0e")
         .then(response => {
           cache[req.query.i] = response.data;
           res.status(200).json(cache[req.query.i]);
@@ -40,14 +40,18 @@ app.get("/", (req, res) => {
     }
   } else if (!!req.query.t) {
     if (!!cache[req.query.t]) {
-      console.log("Location A - cache");
+      console.log("Cache hit - title");
       res.status(200).json(cache[req.query.t]);
       // console.log("res:", res);
       // console.log("res.body:", res.body);
     } else {
-      console.log("Location B - axios");
+      console.log("Cache miss, call axios - id");
       axios
-        .get("https://omdbapi.com/?t=" + req.query.t + "&apikey=63eedeac")
+        .get(
+          "http://www.omdbapi.com/?t=" +
+            encodeURIComponent(req.query.t) +
+            "&apikey=8730e0e"
+        )
         .then(response => {
           cache[req.query.t] = response.data;
           res.status(200).json(cache[req.query.t]);
