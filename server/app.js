@@ -45,7 +45,7 @@ app.get("/", (req, res) => {
       // console.log("res:", res);
       // console.log("res.body:", res.body);
     } else {
-      console.log("Cache miss, call axios - id");
+      console.log("Cache miss, call axios - title");
       axios
         .get(
           "http://www.omdbapi.com/?t=" +
