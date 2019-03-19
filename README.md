@@ -1,10 +1,10 @@
-# Node 101 Express Server
+# Node 101 Movie Finder Data
 
-This project was built for San Diego Code School.
+This project creates a cache server to store movie data from the OMDB API.
 
 ## Getting Started
 
-Clone repo into local directory
+Clone repo into local directory. Run "npm start" and open on localhost:3000.
 
 ### Installing
 
@@ -19,8 +19,6 @@ Run "npm test"
 - Node
 
 - Express
-
-- Morgan
 
 ## Authors
 

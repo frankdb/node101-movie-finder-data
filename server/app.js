@@ -13,14 +13,6 @@ app.use(morgan("dev"));
 const cache = {};
 
 app.get("/", (req, res) => {
-  // check url parameters using req.query
-  // let search = req.query;
-  // console.log(search);
-  // axios
-  //   .get("https://omdbapi.com/?i=" + `${req.query.i}` + `&apikey=8730e0e`)
-  //   .then(response => {
-  //     res.status(200).json(response.data);
-  //   });
   console.log("Cache:", cache);
   if (!!req.query.i) {
     if (!!cache[req.query.i]) {
